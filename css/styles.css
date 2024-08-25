@@ -1,0 +1,38 @@
+:root {
+
+
+
+    --color—body: rgb(247, 247, 247);
+
+
+    /* 
+    --font_body: Defines a custom property for font settings, including:
+    - normal: font-style (normal, not italic)
+    - normal: font-variant (normal, not small-caps)
+    - bold: font-weight (bold text)
+    - 2rem: font-size (size of the text)
+    - /1.5: line-height (1.5 times the font size, for spacing between lines)
+    - Arial, sans-serif: font-family (Arial or default sans-serif)
+    --font_body: normal normal bold 2rem/1.6 Arial,sans-serif;
+    */
+    --font_body: 2rem/1.6 Arial,sans-serif;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::after, *::before {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;  
+}
+
+body {
+    font: var(--font_body);
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
