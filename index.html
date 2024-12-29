@@ -1,20 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Responsive Meta Tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Ioannis' personal website showcasing portfolio, blog, and contact information.">
+    <meta name="keywords" content="Ioannis, Portfolio, Blog, Web Developer, Designer">
+    <meta name="author" content="Ioannis">
+
+    <!-- Open Graph Meta Tags for Social Media Integration -->
+    <meta property="og:title" content="Ioannis - Personal Website">
+    <meta property="og:description" content="Welcome to Ioannis' personal website. Explore my portfolio, read my blog, and get in touch!">
+    <meta property="og:image" content="images/assets/og-image.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+
     <title>Ioannis - Personal Website</title>
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Skip Navigation Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Header Section -->
     <header>
         <div class="h-logo">
-            <img src="images/IO-Logo.png" alt="My Logo">
+            <img src="images/IO-Logo.png" alt="Ioannis' Logo" loading="lazy" 
+                 srcset="images/IO-Logo.png 1x, images/IO-Logo@2x.png 2x" 
+                 sizes="(max-width: 768px) 50px, 100px">
         </div>
         <!-- Desktop Navigation -->
-        <nav class="h-desktop-nav">
+        <nav class="h-desktop-nav" aria-label="Primary Navigation">
             <ul>
                 <li><a href="#home" data-target="home">Home</a></li>
                 <li><a href="#about" data-target="about">About</a></li>
@@ -22,19 +44,23 @@
                 <li><a href="#blog" data-target="blog">Blog</a></li>
                 <li><a href="#contact" data-target="contact">Contact</a></li>
                 <li><a href="#login" data-target="login">Login</a></li>
-                <div id="theme-toggle" class="theme-toggle">
-                    <span id="theme-icon">🌙</span> <!-- This will change based on the theme -->
-                </div>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                        <span id="theme-icon">🌙</span>
+                    </button>
+                </li>
             </ul>
         </nav>
-        <div class="h-burger-menu" id="h-burger-menu">
-            <div class="h-line"></div>
-            <div class="h-line"></div>
-        </div>
+        <!-- Burger Menu -->
+        <button class="h-burger-menu" id="h-burger-menu" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="mobile-nav">
+            <span class="h-line"></span>
+            <span class="h-line"></span>
+            <span class="h-line"></span>
+        </button>
     </header>
 
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
         <ul>
             <li><a href="#home" data-target="home">Home</a></li>
             <li><a href="#about" data-target="about">About</a></li>
@@ -42,18 +68,19 @@
             <li><a href="#blog" data-target="blog">Blog</a></li>
             <li><a href="#contact" data-target="contact">Contact</a></li>
             <li><a href="#login" data-target="login">Login</a></li>
-            <div id="theme-toggle" class="theme-toggle">
-                <span id="theme-icon">🌙</span> <!-- This will change based on the theme -->
-            </div>
+            <li>
+                <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle Theme">
+                    <span id="theme-icon-mobile">🌙</span>
+                </button>
+            </li>
         </ul>
     </nav>
 
-
-
     <!-- Main Content Sections -->
-    <main>
+    <main id="main-content" tabindex="-1">
         <section id="home" class="page active">
             <h1>Welcome to My Website</h1>
+            <p>Your introduction or a brief welcome message goes here.</p>
         </section>
 
         <section id="about" class="page">
@@ -68,21 +95,46 @@
 
         <section id="blog" class="page">
             <h2>Blog</h2>
-            <p>my latest blog posts or thoughts.</p>
+            <p>My latest blog posts or thoughts.</p>
         </section>
 
         <section id="contact" class="page">
             <h2>Contact</h2>
             <p>Hello people.</p>
         </section>
+
+        <section id="login" class="page">
+            <h2>Login</h2>
+            <p>Login form or information.</p>
+        </section>
     </main>
 
     <!-- Footer Section -->
     <footer>
-        <a href="#" target="_blank"><img src="images/assets/fb-logo.png" alt="Facebook"></a>
-        <a href="#" target="_blank"><img src="images/assets/instagram-logo.png" alt="Instagram"></a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <img src="images/assets/fb-logo.png" alt="Facebook" loading="lazy" 
+                 srcset="images/assets/fb-logo.png 1x, images/assets/fb-logo@2x.png 2x" 
+                 sizes="(max-width: 768px) 30px, 60px">
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <img src="images/assets/instagram-logo.png" alt="Instagram" loading="lazy" 
+                 srcset="images/assets/instagram-logo.png 1x, images/assets/instagram-logo@2x.png 2x" 
+                 sizes="(max-width: 768px) 30px, 60px">
+        </a>
     </footer>
 
+    <!-- Scripts -->
     <script src="js/script.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WFQKVLNX');</script>
+    <!-- End Google Tag Manager -->
 </body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFQKVLNX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 </html>
