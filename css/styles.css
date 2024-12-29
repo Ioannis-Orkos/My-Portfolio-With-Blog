@@ -219,6 +219,53 @@ header {
     }
 }
 
+/* Animation Keyframes */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animation Classes */
+.animate-left {
+    animation: slideInLeft 0.5s forwards;
+}
+
+.animate-right {
+    animation: slideInRight 0.5s forwards;
+}
+
+.animate-zoom {
+    animation: zoomIn 0.5s forwards;
+}
+
 /* Main Sections */
 main {
     flex: 1;
@@ -227,9 +274,16 @@ main {
     text-align: center;
 }
 
-section {
-    padding: 2rem 0;
-    outline: none;
+.page {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+    /* Animations handled by JS */
 }
 
 /* Footer */
