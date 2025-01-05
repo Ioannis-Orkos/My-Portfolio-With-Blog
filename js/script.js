@@ -243,10 +243,66 @@ function initNavigation(blog) {
 }
 
 // -------------------------------
-// Load Individual Blog
+// Load Individual Blog (Shadow DOM)
 // -------------------------------
-function loadBlog(blogFolder) {
-  alert(`Loading blog: ${blogFolder}`);
+async function loadBlog(blogFolder) {
+  async function resourceExists(url) {
+    try {
+      const response = await fetch(url, { method: 'HEAD' });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  function stripHeaderFooter(html) {
+    const parser = new DOMParser();
+    const doc    = parser.parseFromString(html, 'text/html');
+    doc.querySelectorAll('header').forEach(h => h.remove());
+    doc.querySelectorAll('footer').forEach(f => f.remove());
+    return doc.body.innerHTML;
+  }
+
+  async function fetchText(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch content: ${response.statusText}`);
+    return response.text();
+  }
+
+  const blogSection = document.getElementById(blogFolder);
+  if (!blogSection) {
+    console.error(`Section with id "${blogFolder}" not found.`);
+    return;
+  }
+
+  const shadowRoot = blogSection.shadowRoot || blogSection.attachShadow({ mode: 'open' });
+  shadowRoot.innerHTML = '';
+
+  try {
+    const cssContent   = await fetchText(`blogs/${blogFolder}/styles.css`);
+    const htmlContent  = await fetchText(`blogs/${blogFolder}/index.html`);
+    const cleanedHTML  = stripHeaderFooter(htmlContent);
+
+    const styleEl = document.createElement('style');
+    styleEl.textContent = cssContent;
+    shadowRoot.appendChild(styleEl);
+
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = cleanedHTML;
+    shadowRoot.appendChild(wrapper);
+
+    initNavigation(blogFolder);  // re-init nav for blog
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const scriptPath = `${window.location.origin}/blogs/${blogFolder}/script.js`;
+    if (await resourceExists(scriptPath)) {
+      const module = await import(scriptPath);
+      if (module.initShadowBlog) module.initShadowBlog(shadowRoot);
+    }
+  } catch (err) {
+    console.error(`Error loading blog "${blogFolder}":`, err);
+    shadowRoot.innerHTML = `<p>Failed to load blog content. Please try again later.</p>`;
+  }
 }
 
 // -------------------------------
@@ -368,7 +424,7 @@ function initBlogList() {
     searchBlogs(this.value);
   });
 
-  function initializeBlogList() {
+  (function(){
     fetch('blogs/blog-data.json')
       .then(r => r.ok ? r.json() : Promise.reject('Network error'))
       .then(data => {
@@ -383,11 +439,6 @@ function initBlogList() {
         console.error('Error fetching blog data:', err);
         blogListEl.innerHTML = `<p>Failed to load blogs.</p>`;
       });
-  }
-
-  initializeBlogList();
-  (function(){
-    //Bunch of code...
   })();
 }
 
