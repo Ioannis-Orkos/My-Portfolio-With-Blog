@@ -29,3 +29,8 @@ build/
 
 # Misc
 images/IO-Logo-main.png
+
+# expermiental folder
+js-expermiental/
+blogs/blog*
+js/script comented.js

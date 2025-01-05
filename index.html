@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Responsive Meta Tag -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Ioannis' personal website showcasing portfolio, blog, and contact information.">
@@ -93,8 +94,22 @@
         </section>
 
         <section id="blog" class="page">
-            <h2>Blog</h2>
-            <p>My latest blog posts or thoughts.</p>
+            <h2>List of blogs</h2>
+            
+            <!-- Blog Search -->
+            <div class="blog-search">
+                <input type="text" id="blog-search" placeholder="Search blogs..." aria-label="Search Blogs">
+            </div>
+            
+            <!-- Blog Categories -->
+            <div id="blog-categories" class="blog-categories" aria-label="Blog Categories">
+                <!-- Categories will be dynamically inserted here -->
+            </div>
+            
+            <!-- Blog List -->
+            <div id="blogs" class="blog-list" aria-live="polite">
+                <!-- Blog items will be dynamically inserted here -->
+            </div>
         </section>
 
         <section id="contact" class="page">
@@ -120,10 +135,12 @@
                  srcset="images/assets/instagram-logo.png 1x, images/assets/instagram-logo@2x.png 2x" 
                  sizes="(max-width: 768px) 30px, 60px">
         </a>
+        <div>COPYRIGHT © 2024 Ioannis Orkos</div>
     </footer>
 
     <!-- Scripts -->
     <script src="js/script.js"></script>
+    <!-- <script type="module" src="js/mod/index.js"></script> -->
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
