@@ -17,6 +17,11 @@ const mainContent  = document.getElementById('main-content');
 const blogListEl   = document.getElementById('blogs');
 const blogSearch   = document.getElementById('blog-search');
 const blogCatsEl   = document.getElementById('blog-categories');
+const portfolioListEl   = document.getElementById('portfolios');
+const portfolioSearch   = document.getElementById('portfolio-search');
+const portfolioCatsEl   = document.getElementById('portfolio-categories');
+
+
 
 // -------------------------------
 // Toggle Mobile Navigation
@@ -151,7 +156,7 @@ function initThemeToggle() {
 // -------------------------------
 // Single-Page Navigation
 // -------------------------------
-function initNavigation(blog) {
+function initNavigation(blog_portfolio) {
   const navLinks = document.querySelectorAll('nav ul li a[data-target]');
 
   function displayTitle(target) {
@@ -223,9 +228,9 @@ function initNavigation(blog) {
   });
 
   // If we're loading a direct blog, handle that
-  if (blog) {
-    if (blog === initialPage) navigateToLoad(blog);
-    else navigateTo(blog);
+  if (blog_portfolio) {
+    if (blog_portfolio === initialPage) navigateToLoad(blog_portfolio);
+    else navigateTo(blog_portfolio);
     return;
   }
 
@@ -285,6 +290,7 @@ async function loadBlog(blogFolder) {
 
     const styleEl = document.createElement('style');
     styleEl.textContent = cssContent;
+    //styleEl.textContent.append = cssContent;
     shadowRoot.appendChild(styleEl);
 
     const wrapper = document.createElement('div');
@@ -442,6 +448,211 @@ function initBlogList() {
   })();
 }
 
+
+
+
+// -------------------------------
+// Load Individual Portfolio (Shadow DOM)
+// -------------------------------
+async function loadPortfolio(portfolioFolder) {
+  async function resourceExists(url) {
+    try {
+      const response = await fetch(url, { method: 'HEAD' });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  function stripHeaderFooter(html) {
+    const parser = new DOMParser();
+    const doc    = parser.parseFromString(html, 'text/html');
+    doc.querySelectorAll('header').forEach(h => h.remove());
+    doc.querySelectorAll('footer').forEach(f => f.remove());
+    return doc.body.innerHTML;
+  }
+
+  async function fetchText(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Failed to fetch content: ${response.statusText}`);
+    return response.text();
+  }
+
+  const portfolioSection = document.getElementById(portfolioFolder);
+  if (!portfolioSection) {
+    console.error(`Section with id "${portfolioFolder}" not found.`);
+    return;
+  }
+
+  const shadowRoot = portfolioSection.shadowRoot || portfolioSection.attachShadow({ mode: 'open' });
+  shadowRoot.innerHTML = '';
+
+  try {
+    const cssContent   = await fetchText(`portfolio/${portfolioFolder}/styles.css`);
+    const htmlContent  = await fetchText(`portfolio/${portfolioFolder}/index.html`);
+    const cleanedHTML  = stripHeaderFooter(htmlContent);
+
+    const styleEl = document.createElement('style');
+    styleEl.textContent = cssContent;
+    shadowRoot.appendChild(styleEl);
+
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = cleanedHTML;
+    shadowRoot.appendChild(wrapper);
+
+    initNavigation(portfolioFolder);  // re-init nav for portfolio
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const scriptPath = `${window.location.origin}/portfolio/${portfolioFolder}/script.js`;
+    if (await resourceExists(scriptPath)) {
+      const module = await import(scriptPath);
+      if (module.initShadowPortfolio) module.initShadowPortfolio(shadowRoot);
+    }
+  } catch (err) {
+    console.error(`Error loading portfolio "${portfolioFolder}":`, err);
+    shadowRoot.innerHTML = `<p>Failed to load portfolio content. Please try again later.</p>`;
+  }
+}
+
+
+// -------------------------------
+// Portfolio List & Search/Filter
+// -------------------------------
+function initPortfolioList() {
+  let portfolios         = [];
+  let filteredPortfolios = [];
+  let selectedCats  = new Set();
+
+  function createPortfolioItem(portfolio) {
+    const item = document.createElement('div');
+    item.classList.add('portfolio-item');
+
+    const img = document.createElement('img');
+    img.src   = `portfolio/${portfolio.image}`;
+    img.alt   = portfolio.title;
+    img.loading = 'lazy';
+
+    const details = document.createElement('div');
+    details.classList.add('portfolio-details');
+
+    const title = document.createElement('h2');
+    title.textContent = portfolio.title;
+
+    const date = document.createElement('p');
+    date.textContent = portfolio.date;
+    date.classList.add('portfolio-date');
+
+    const desc = document.createElement('p');
+    desc.textContent = portfolio.description;
+    desc.classList.add('portfolio-description');
+
+    details.appendChild(title);
+    details.appendChild(date);
+    details.appendChild(desc);
+    item.appendChild(img);
+    item.appendChild(details);
+
+    item.addEventListener('click', () => loadPortfolio(portfolio.folder));
+    return item;
+  }
+
+  function listPortfolios(dataArray) {
+    portfolioListEl.innerHTML = '';
+    if (!dataArray.length) {
+      portfolioListEl.innerHTML = `<p>No portfolios found.</p>`;
+      return;
+    }
+    dataArray.forEach(b => portfolioListEl.appendChild(createPortfolioItem(b)));
+  }
+
+  function filterPortfoliosByCats(cats) {
+    return portfolios.filter(b => b.categories.some(cat => cats.includes(cat)));
+  }
+
+  function displayCategories() {
+    const catCounts = {};
+    portfolios.forEach(b => {
+      b.categories.forEach(c => catCounts[c] = (catCounts[c] || 0) + 1);
+    });
+    portfolioCatsEl.innerHTML = '';
+
+    Object.keys(catCounts).forEach(cat => {
+      const btn = document.createElement('button');
+      btn.textContent = cat;
+      btn.classList.add('portfolio-category-button');
+
+      const count = document.createElement('span');
+      count.classList.add('portfolio-category-count');
+      count.textContent = catCounts[cat];
+      btn.appendChild(count);
+
+      btn.addEventListener('click', () => {
+        if (selectedCats.has(cat)) {
+          selectedCats.delete(cat);
+          btn.classList.remove('portfolio-category-active');
+        } else {
+          selectedCats.add(cat);
+          btn.classList.add('portfolio-category-active');
+        }
+        filteredPortfolios = selectedCats.size
+          ? filterPortfoliosByCats([...selectedCats])
+          : portfolios;
+        listPortfolios(filteredPortfolios);
+      });
+      portfolioCatsEl.appendChild(btn);
+    });
+  }
+
+  function addPortfolioSection(folder) {
+    if (!document.getElementById(folder)) {
+      const sec = document.createElement('section');
+      sec.id    = folder;
+      sec.className = 'page';
+      mainContent.appendChild(sec);
+    }
+  }
+
+  function checkDirectPortfolioLoad() {
+    portfolios.forEach(b => {
+      if (b.folder === initialPage) loadPortfolio(b.folder);
+    });
+  }
+
+  function searchPortfolios(query) {
+    const q = query.toLowerCase();
+    if (!q) {
+      listPortfolios(filteredPortfolios);
+      return;
+    }
+    const searched = filteredPortfolios.filter(b =>
+      b.title.toLowerCase().includes(q) || b.description.toLowerCase().includes(q)
+    );
+    listPortfolios(searched);
+  }
+
+  portfolioSearch.addEventListener('input', function() {
+    searchPortfolios(this.value);
+  });
+
+  (function(){
+    fetch('portfolio/portfolio-data.json')
+      .then(r => r.ok ? r.json() : Promise.reject('Network error'))
+      .then(data => {
+        portfolios         = data;
+        filteredPortfolios = data;
+        portfolios.forEach(b => addPortfolioSection(b.folder));
+        listPortfolios(filteredPortfolios);
+        displayCategories();
+        checkDirectPortfolioLoad();
+      })
+      .catch(err => {
+        console.error('Error fetching portfolio data:', err);
+        portfolioListEl.innerHTML = `<p>Failed to load portfolios.</p>`;
+      });
+  })();
+}
+
+
 // -------------------------------
 // Initialize Everything on DOM Load
 // -------------------------------
@@ -450,5 +661,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initControls();
   initThemeToggle();
   initNavigation();
+  initPortfolioList();
   initBlogList();
 });
