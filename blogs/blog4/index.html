@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Blog 4 - Shadow DOM Test</title>
+    <meta name="description" content="A test blog to verify Shadow DOM functionality with custom JS and CSS.">
+    <!-- Blog Specific CSS -->
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body class="blog-postbody">
+    <header>
+        <p>Test Blog Header</p>
+    </header>
+    <article itemscope itemtype="https://schema.org/BlogPosting">
+        <img src="https://via.placeholder.com/400x300?text=Test+Image" alt="Test Image" loading="lazy" itemprop="image">
+
+        <div class="blog-details">
+            <h2 itemprop="headline">Test Blog 4 - Shadow DOM Functionality</h2>
+            <p class="blog-date" itemprop="datePublished">2026-02-25</p>
+            <p class="blog-description" itemprop="description">This is a dummy blog post to test Shadow DOM isolation with custom JavaScript and CSS.</p>
+            <!-- Blog Content -->
+            <div class="blog-content">
+                <p>This blog post is designed to test the Shadow DOM functionality. Each blog should have its own isolated styles and scripts that don't interfere with the main page.</p>
+
+                <h3>Testing Features:</h3>
+                <ul>
+                    <li>Custom CSS styles scoped to this blog</li>
+                    <li>JavaScript functionality that works within Shadow DOM</li>
+                    <li>Image loading and error handling</li>
+                    <li>Interactive elements</li>
+                </ul>
+
+                <p>The background of this blog should be different from other blogs, and the buttons below should trigger alerts specific to this blog.</p>
+
+                <div class="test-section">
+                    <h4>Interactive Test Section</h4>
+                    <p>Click the buttons to test JavaScript functionality:</p>
+                    <button class="blog4-button" id="test-btn-1">Test Button 1</button>
+                    <button class="blog4-button" id="test-btn-2">Test Button 2</button>
+                    <div id="output">Output will appear here</div>
+                </div>
+
+                <p>This demonstrates that each blog can have its own unique styling and behavior while being properly isolated in Shadow DOM.</p>
+            </div>
+        </div>
+    </article>
+
+    <!-- Blog Specific JS -->
+    <script src="script.js" defer></script>
+    <script src="/js/embedded-frame.js" defer></script>
+</body>
+</html>

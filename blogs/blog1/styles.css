@@ -1,0 +1,36 @@
+/* Scoped styles for Blog 1 */
+.blog-content {
+    font-family: 'Georgia', serif;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.blog-content h1 {
+    color: #333;
+    font-size: 2.5rem;
+}
+
+#blog-content p {
+    color: #555;
+    line-height: 1.6;
+}
+
+#blog-content a {
+    color: var(--color-nav-active-hover);
+    text-decoration: none;
+}
+
+.blog-content a:hover {
+    text-decoration: underline;
+}
+article {
+    background-color: yellow;
+}
+header {
+    background-color: lightblue;
+}
+.blog-postbody {
+    background-color: rgb(238, 144, 144);
+    color: chartreuse;
+}

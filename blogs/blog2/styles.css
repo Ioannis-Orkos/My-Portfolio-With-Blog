@@ -1,0 +1,90 @@
+/* Basic Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+  }
+  
+  header h1 {
+    margin-bottom: 0.5em;
+  }
+  
+  header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1em;
+  }
+  
+  header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Main Blog Section */
+  #blog-posts {
+    width: 70%;
+    float: left;
+    padding: 1em;
+  }
+  
+  .post {
+    margin-bottom: 2em;
+  }
+  
+  .post h2 {
+    margin-bottom: 0.5em;
+  }
+  
+  .read-more {
+    background-color: #0066cc;
+    color: #fff;
+    padding: 0.5em 1em;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.5em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .read-more:hover {
+    background-color: #004d99;
+  }
+  
+  /* Hidden content */
+  .hidden {
+    display: none;
+  }
+  
+  /* Sidebar Styles */
+  aside {
+    width: 25%;
+    float: right;
+    padding: 1em;
+    background-color: #f5f5f5;
+  }
+  
+  aside h3 {
+    margin-bottom: 0.5em;
+  }
+  
+  /* Footer Styles */
+  footer {
+    clear: both;
+    background-color: #eee;
+    text-align: center;
+    padding: 1em;
+    margin-top: 2em;
+  }
+  

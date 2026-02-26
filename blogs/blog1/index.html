@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Blog Post - Ioannis</title>
+    <meta name="description" content="An introduction to my first blog post, discussing various interesting topics.">
+    <!-- Blog Specific CSS -->
+    <link rel="stylesheet" href="styles.css"/>
+    
+</head>
+
+<body class="blog-postbody">
+    <header>
+        <p> Hello</p>
+    </header>
+    <article itemscope itemtype="https://schema.org/BlogPosting">
+        <img src="blogs/blog1/1.jpg" alt="Aviation Image" loading="lazy" itemprop="image"  onerror="this.src='1.jpg';" >
+        <div class="blog-details">
+            <h2 itemprop="headline">My First Blog Post</h2>
+            <p class="blog-date" itemprop="datePublished">2024-08-24</p>
+            <p class="blog-description" itemprop="description">An introduction to my first blog post, discussing various interesting topics.</p>
+            <!-- Blog Content -->
+            <div class="blog-content">
+                <p>Welcome to my first blog post! In this post, I'll be discussing various interesting topics related to aviation...</p>
+                <!-- More content -->
+            </div>
+        </div>
+    </article>
+    <button class="blog-action-button">"CLICK ME"</button>
+    <button class="blog-scroll-top-button">"CLICK ME"</button>
+
+    <section class="blog-auth-box">
+        <h3>Server Auth Check</h3>
+        <p id="blog1-auth-status">Checking login status...</p>
+        <button id="blog1-load-projects" type="button">Load Protected Projects</button>
+        <ul id="blog1-projects"></ul>
+    </section>
+
+    <!-- Blog Specific JS -->
+    <script src="blog1.js" defer></script>
+    <script src="/js/embedded-frame.js" defer></script>
+</body>
+</html>
+

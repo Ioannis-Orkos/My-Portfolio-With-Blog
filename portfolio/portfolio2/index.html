@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Note: <header> and <footer> tags (if any) will be stripped out by the main app
+    to avoid conflicts. So keep your portfolio content inside <main>, <article>, or plain <div>.
+  -->
+  <meta charset="UTF-8" />
+  <title>Test Portfolio 2 - Shadow DOM Test</title>
+</head>
+<body>
+  <article>
+    <h1>Test Portfolio 2 - Shadow DOM Isolation</h1>
+    <p>
+      This is a test portfolio item to verify that Shadow DOM works correctly with custom JavaScript and CSS for portfolio items.
+      Each portfolio should be completely isolated from the main page and other portfolios.
+    </p>
+
+    <img src="portfolio/portfolio2/1.jpg" alt="Aviation Image" loading="lazy" itemprop="image"  onerror="this.src='1.jpg';" >
+
+    <h2>Testing Shadow DOM Features</h2>
+    <ul>
+      <li><strong>Isolated Styles:</strong> This portfolio has its own unique color scheme</li>
+      <li><strong>Scoped JavaScript:</strong> Interactive elements that work within Shadow DOM</li>
+      <li><strong>Content Isolation:</strong> No interference with main page styles or scripts</li>
+      <li><strong>Dynamic Content:</strong> Elements that can be manipulated via JavaScript</li>
+    </ul>
+
+    <div class="portfolio-test-section">
+      <h3>Interactive Test Area</h3>
+      <p>Test the functionality below:</p>
+      <button id="portfolio-btn-1" class="portfolio-button">Click Me!</button>
+      <button id="portfolio-btn-2" class="portfolio-button secondary">Another Button</button>
+      <div id="portfolio-output" class="output-display">Results will appear here</div>
+    </div>
+
+    <h2>Technical Implementation</h2>
+    <p>
+      This portfolio demonstrates how Shadow DOM allows each portfolio item to have its own:
+    </p>
+    <ul>
+      <li>Custom CSS variables and styles</li>
+      <li>JavaScript event handlers</li>
+      <li>Isolated DOM manipulation</li>
+      <li>Unique identifiers and classes</li>
+    </ul>
+
+    <p>
+      The styling uses a blue and purple color scheme to distinguish it from other portfolios and the main site.
+    </p>
+  </article>
+
+    <script src="/js/embedded-frame.js" defer></script>
+</body>
+</html>

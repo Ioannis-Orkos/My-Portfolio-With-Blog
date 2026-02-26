@@ -1,0 +1,84 @@
+/* Scoped styles for Blog 4 - Shadow DOM Test */
+.blog-content {
+    font-family: 'Arial', sans-serif;
+    background-color: #e8f5e8; /* Light green background */
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid #4caf50;
+}
+
+.blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4 {
+    color: #2e7d32; /* Dark green */
+    font-weight: bold;
+}
+
+.blog-content p {
+    color: #1b5e20; /* Very dark green */
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.blog-content ul {
+    background-color: #f1f8e9;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #4caf50;
+}
+
+.blog-content li {
+    margin-bottom: 0.5rem;
+    color: #2e7d32;
+}
+
+.test-section {
+    background-color: #fff3e0; /* Light orange */
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    border: 2px solid #ff9800;
+}
+
+.blog4-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.blog4-button:hover {
+    background-color: #45a049;
+}
+
+#output {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    min-height: 2rem;
+    color: #333;
+}
+
+article {
+    background-color: #fffde7; /* Light yellow */
+    border: 2px solid #ffeb3b;
+}
+
+header {
+    background-color: #e8f5e8; /* Light green */
+    color: #2e7d32;
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.blog-postbody {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+    color: #1b5e20;
+    min-height: 100vh;
+}

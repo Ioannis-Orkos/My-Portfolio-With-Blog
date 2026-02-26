@@ -1,0 +1,46 @@
+/* 
+  Blog-specific styling. 
+  These styles will be encapsulated in the Shadow DOM, 
+  so they won’t conflict with the main site.
+*/
+
+article {
+    font-family: sans-serif;
+    line-height: 1.6;
+    padding: 1.5rem;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  /* Example heading styles */
+  article h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+  }
+  
+  article h2 {
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+  }
+  
+  /* Code snippet styling (you could refine further) */
+  pre {
+    background: #f5f5f5;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  
+  pre code {
+    font-family: "Fira Code", Consolas, monospace;
+    color: #111;
+  }
+  
+  /* Links */
+  article a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+  article a:hover {
+    color: #004999;
+  }
+  

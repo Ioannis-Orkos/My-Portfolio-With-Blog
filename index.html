@@ -20,12 +20,48 @@
     <meta property="og:type" content="website">
 
     <title>Ioannis - Personal Website</title>
+
+
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WFQKVLNX');</script>
+    <!-- End Google Tag Manager -->
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- Application Modules -->
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/portfolio.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/typing.js"></script>
+
+    <!-- Main Application Script -->
+    <script src="js/script.js"></script>
+
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFQKVLNX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!-- Skip Navigation Link for Accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -43,9 +79,10 @@
                 <li><a href="#about" data-target="about">About</a></li>
                 <li><a href="#portfolio" data-target="portfolio">Portfolio</a></li>
                 <li><a href="#blog" data-target="blog">Blog</a></li>
+                <li id="nav-admin-item" class="admin-only-nav" hidden><a id="nav-admin-link" href="#admin" data-target="admin">Admin</a></li>
                 <li><a href="#contact" data-target="contact">Contact</a></li>
-                <li><a href="#login" data-target="login">Login</a></li>
-                <li>
+                <li class="nav-auth-group">
+                    <a id="nav-login-link" href="#login" data-target="login">Login</a>
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
                         <span id="theme-icon">🌙</span>
                     </button>
@@ -66,9 +103,10 @@
             <li><a href="#about" data-target="about">About</a></li>
             <li><a href="#portfolio" data-target="portfolio">Portfolio</a></li>
             <li><a href="#blog" data-target="blog">Blog</a></li>
+            <li id="mobile-nav-admin-item" class="admin-only-nav" hidden><a id="mobile-nav-admin-link" href="#admin" data-target="admin">Admin</a></li>
             <li><a href="#contact" data-target="contact">Contact</a></li>
-            <li><a href="#login" data-target="login">Login</a></li>
-            <li>
+            <li class="mobile-auth-group">
+                <a id="mobile-nav-login-link" href="#login" data-target="login">Login</a>
                 <button id="theme-toggle-mobile" class="theme-toggle" aria-label="Toggle Theme">
                     <span id="theme-icon-mobile">🌙</span>
                 </button>
@@ -78,60 +116,303 @@
 
     <!-- Main Content Sections -->
     <main id="main-content" tabindex="-1">
+        <!-- Home Section -->
         <section id="home" class="page active">
-            <h1>Welcome to My Website</h1>
-            <p>Your introduction or a brief welcome message goes here.</p>
+             <h1 class="hero-title">
+                Hello, I'm
+                <span id="typing"></span>
+              </h1>
+              <p class="hero-subtitle">Software Engineer & Aviation Mechanic</p>
+              <button class="btn-hero">
+                Explore My World
+              </button>
         </section>
 
+        <!-- About Section -->
         <section id="about" class="page">
-            <h2>About Me</h2>
-            <p>Some information about myself.</p>
+
+
+
+            <!-- ======= ABOUT CONTENT ======= -->
+            <div class="about-container">
+                <!-- Image or illustration -->
+                <div class="about-image">
+                    <img
+                        src="images/about.jpg"
+                        alt="Your Portrait"
+                    />
+                </div>
+                <!-- Text content -->
+                <div class="about-text">
+                    <h2>Hi, I’m Ioannis </h2>
+                    <p>
+                        I’m a passionate <strong>Software Engineer</strong> and an enthusiastic
+                        <strong>Aviation Mechanic</strong>. From debugging complex code
+                        to fine-tuning aircraft engines, I thrive on the perfect blend of logic and
+                        craftsmanship. My journey began when I realized the potential of applying
+                        programming expertise to the meticulous world of aviation, streamlining
+                        processes and ensuring safety in every line of code and every turn of a wrench.
+                    </p>
+                    <p>
+                        Over the years, I’ve immersed myself in the worlds of
+                        <em>front-end development, back-end solutions, IoT integrations, and
+                        aviation maintenance</em>. When I’m not coding or working on aircraft,
+                        you might find me tinkering with new technologies, exploring flight sims,
+                        or brainstorming creative solutions to everyday problems.
+                    </p>
+                </div>
+            </div>
+          
+            <!-- ======= TIMELINE SECTION ======= -->
+            <div class="timeline-section">
+                <h2>My Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>2015</h3>
+                        <p>Started my programming journey with Python and small automation scripts.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2017</h3>
+                        <p>Earned my Aircraft Mechanic certification, focusing on engine overhaul & maintenance.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>2019 - Present</h3>
+                        <p>Combining code and aviation: building software tools to enhance maintenance accuracy.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            
         </section>
 
-        <section id="portfolio" class="page">            
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="page">
+            <p id="portfolio-status" class="portfolio-status" aria-live="polite"></p>
             <!-- Portfolio Search -->
             <div class="portfolio-search">
-                <input type="text" id="portfolio-search" placeholder="Search Portfolio's..." aria-label="Search Portfolio's">
+                <input type="text" id="portfolio-search" placeholder="Search Portfolios..." aria-label="Search Portfolios">
             </div>
-            
+
             <!-- Portfolio Categories -->
             <div id="portfolio-categories" class="portfolio-categories" aria-label="Portfolio Categories">
                 <!-- Categories will be dynamically inserted here -->
             </div>
-            
-            <!-- Blog List -->
-            <div id="portfolios" class="blog-list" aria-live="polite">
+
+            <!-- Portfolio List -->
+            <div id="portfolios" class="portfolio-list" aria-live="polite">
                 <!-- Portfolio items will be dynamically inserted here -->
             </div>
         </section>
 
+        <!-- Blog Section -->
         <section id="blog" class="page">
-            <h2>List of blogs</h2>
-            
+            <h2>List of Blogs</h2>
+
             <!-- Blog Search -->
             <div class="blog-search">
                 <input type="text" id="blog-search" placeholder="Search blogs..." aria-label="Search Blogs">
             </div>
-            
+
             <!-- Blog Categories -->
             <div id="blog-categories" class="blog-categories" aria-label="Blog Categories">
                 <!-- Categories will be dynamically inserted here -->
             </div>
-            
+
             <!-- Blog List -->
             <div id="blogs" class="blog-list" aria-live="polite">
                 <!-- Blog items will be dynamically inserted here -->
             </div>
         </section>
 
-        <section id="contact" class="page">
-            <h2>Contact</h2>
-            <p>Hello people.</p>
+        <section id="admin" class="page">
+            <div class="admin-page-wrap">
+                <h2>Admin Panel</h2>
+                <p class="admin-intro">Manage users, projects, and access requests.</p>
+                <p id="admin-status" class="admin-status" aria-live="polite"></p>
+                <div class="admin-tabs" role="tablist" aria-label="Admin sections">
+                    <button id="admin-tab-users" class="admin-tab-btn active" type="button" data-admin-tab="users">Users</button>
+                    <button id="admin-tab-projects" class="admin-tab-btn" type="button" data-admin-tab="projects">Projects</button>
+                    <button id="admin-tab-requests" class="admin-tab-btn" type="button" data-admin-tab="requests">Requests</button>
+                </div>
+
+                <div class="admin-grid">
+                    <article id="admin-panel-users" class="admin-card admin-panel">
+                        <div class="admin-card-head">
+                            <h3>Users</h3>
+                            <button id="admin-refresh-users" type="button" class="admin-btn">Refresh</button>
+                        </div>
+                        <div class="admin-table-wrap">
+                            <table class="admin-table" aria-label="Users">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Email</th>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-users-body"></tbody>
+                            </table>
+                        </div>
+                    </article>
+
+                    <article id="admin-panel-projects" class="admin-card admin-panel admin-hidden">
+                        <div class="admin-card-head">
+                            <h3>Projects</h3>
+                            <button id="admin-refresh-projects" type="button" class="admin-btn">Refresh</button>
+                        </div>
+                        <form id="admin-project-form" class="admin-form">
+                            <label for="admin-project-key">Project Key</label>
+                            <input id="admin-project-key" name="projectKey" type="text" required placeholder="portfolio1">
+
+                            <label for="admin-project-title">Title</label>
+                            <input id="admin-project-title" name="title" type="text" required placeholder="Portfolio One">
+
+                            <label for="admin-project-url">URL</label>
+                            <input id="admin-project-url" name="projectUrl" type="url" placeholder="https://example.com/page">
+
+                            <label for="admin-project-description">Description</label>
+                            <textarea id="admin-project-description" name="description" rows="3"></textarea>
+
+                            <label class="admin-checkbox-row">
+                                <input id="admin-project-active" name="isActive" type="checkbox" checked>
+                                <span>Active</span>
+                            </label>
+
+                            <button type="submit" class="admin-btn admin-btn-primary">Save Project</button>
+                        </form>
+                        <ul id="admin-project-list" class="admin-list"></ul>
+                    </article>
+
+                    <article id="admin-panel-requests" class="admin-card admin-panel admin-hidden">
+                        <div class="admin-card-head">
+                            <h3>Access Requests</h3>
+                            <div class="admin-row-inline">
+                                <select id="admin-request-filter" aria-label="Request status filter">
+                                    <option value="pending">Pending</option>
+                                    <option value="approved" selected>Approved</option>
+                                    <option value="declined">Declined</option>
+                                    <option value="revoked">Revoked</option>
+                                    <option value="all">All</option>
+                                </select>
+                                <button id="admin-refresh-requests" type="button" class="admin-btn">Refresh</button>
+                            </div>
+                        </div>
+                        <ul id="admin-request-list" class="admin-list"></ul>
+                    </article>
+                </div>
+            </div>
         </section>
 
-        <section id="login" class="page">
-            <h2>Login</h2>
-            <p>Login form or information.</p>
+        <!-- Contact Modal Section -->
+        <section id="contact" class="modal-overlay">
+            <div class="contact-form-container modal">
+                <h2>Contact Me</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name<span class="required">*</span></label>
+                        <input type="text" id="name" name="user_name" required>
+                        <small class="error-message" id="name-error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email<span class="required">*</span></label>
+                        <input type="email" id="email" name="user_email" required>
+                        <small class="error-message" id="email-error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject<span class="required">*</span></label>
+                        <input type="text" id="subject" name="subject" required>
+                        <small class="error-message" id="subject-error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message<span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <small class="error-message" id="message-error"></small>
+                    </div>
+                    <button type="submit" id="submit-button">Send Message</button>
+                    <div id="form-status"></div>
+                </form>
+                <div id="thank-you-message" style="display: none;">
+                    <h3>Thank You!</h3>
+                    <p>Your message has been sent successfully. I'll get back to you soon.</p>
+                    <button class="modal-close">Close</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Modal Section -->
+        <section id="login" class="modal-overlay auth-modal-overlay" aria-hidden="true">
+            <div class="modal auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+                <button id="login-modal-close" class="modal-close auth-modal-close" type="button">Close</button>
+                <h2 id="auth-modal-title">Account Access</h2>
+
+                <div id="auth-switch" class="auth-switch">
+                    <button id="auth-tab-login" type="button" class="auth-switch-btn active">Login</button>
+                    <button id="auth-tab-signup" type="button" class="auth-switch-btn">Sign Up</button>
+                </div>
+
+                <div id="auth-view-login" class="auth-view">
+                    <form id="login-form" class="auth-form" method="post" action="/auth/login" autocomplete="on">
+                        <label for="login-email">Email</label>
+                        <input id="login-email" name="email" type="email" required autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false">
+
+                        <label for="login-password">Password</label>
+                        <input id="login-password" name="password" type="password" required autocomplete="current-password">
+
+                        <button type="submit" class="auth-btn auth-btn-primary">Login</button>
+                    </form>
+                    <p id="login-status" class="auth-status" aria-live="polite"></p>
+                    <p class="auth-inline-text">No account?
+                        <button id="show-signup-btn" type="button" class="auth-inline-btn">Create one</button>
+                    </p>
+                </div>
+
+                <div id="auth-view-signup" class="auth-view auth-hidden">
+                    <form id="signup-form" class="auth-form" method="post" action="/auth/signup" autocomplete="on">
+                        <label for="signup-name">Name</label>
+                        <input id="signup-name" name="name" type="text" autocomplete="name">
+
+                        <label for="signup-email">Email</label>
+                        <input id="signup-email" name="email" type="email" required autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false">
+
+                        <label for="signup-password">Password</label>
+                        <input id="signup-password" name="new-password" type="password" required minlength="8" autocomplete="new-password">
+
+                        <label for="signup-password-confirm">Confirm Password</label>
+                        <input id="signup-password-confirm" name="new-password-confirm" type="password" required minlength="8" autocomplete="new-password">
+
+                        <button type="submit" class="auth-btn auth-btn-primary">Create Account</button>
+                    </form>
+                    <p id="signup-status" class="auth-status" aria-live="polite"></p>
+                    <p class="auth-inline-text">Already have an account?
+                        <button id="show-login-btn" type="button" class="auth-inline-btn">Login</button>
+                    </p>
+                </div>
+
+                <div id="auth-view-welcome" class="auth-view auth-hidden">
+                    <p id="auth-user-state" class="auth-note">Welcome</p>
+                    <button id="logout-btn" type="button" class="auth-btn auth-btn-danger">Logout</button>
+                    <h4 id="protected-projects-title">Protected Projects</h4>
+                    <ul id="protected-projects" class="protected-projects"></ul>
+                </div>
+
+                <div id="auth-social-block">
+                    <div class="auth-divider">or continue with</div>
+                    <div class="auth-social">
+                    <button id="google-login-btn" type="button" class="auth-btn">Continue with Google</button>
+                    <button id="github-login-btn" type="button" class="auth-btn">Continue with GitHub</button>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -147,22 +428,15 @@
                  srcset="images/assets/instagram-logo.png 1x, images/assets/instagram-logo@2x.png 2x" 
                  sizes="(max-width: 768px) 30px, 60px">
         </a>
-        <div>COPYRIGHT © 2024 Ioannis Orkos</div>
+        <div>COPYRIGHT © 2025 Ioannis Orkos</div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/script.js"></script>
-    <!-- <script type="module" src="js/mod/index.js"></script> -->
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WFQKVLNX');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-consent">
+        <p>This website uses cookies to enhance your experience. By continuing to use this site, you agree to our use of cookies.</p>
+        <button id="accept-cookies">Accept</button>
+    </div>
+
+    
 </body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFQKVLNX"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 </html>

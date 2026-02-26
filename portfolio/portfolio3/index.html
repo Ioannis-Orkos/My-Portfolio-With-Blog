@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chess Game - Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="chess-page">
+    <header class="chess-header">
+      <h1>Chess Game</h1>
+      <p>Playable browser chess board built with vanilla JavaScript.</p>
+    </header>
+
+    <section class="chess-layout">
+      <div class="board-wrap">
+        <div id="chessboard" class="chessboard" aria-label="Chess board"></div>
+      </div>
+
+      <aside class="panel">
+        <div class="online-card">
+          <h2>Online Match</h2>
+          <p id="online-status">Offline mode</p>
+          <div class="online-controls">
+            <button id="create-room" type="button">Create Room</button>
+            <input id="online-room-input" type="text" placeholder="Room code" maxlength="10" />
+            <button id="join-room" type="button">Join Room</button>
+            <button id="copy-room" type="button">Copy Room</button>
+            <button id="leave-room" type="button">Leave Room</button>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <h2>Game Status</h2>
+          <p id="status-text">White to move</p>
+          <p id="selection-text">Select a piece</p>
+        </div>
+
+        <div class="moves-card">
+          <h2>Move Log</h2>
+          <ol id="move-log" class="move-log"></ol>
+        </div>
+
+        <button id="reset-game" class="reset-btn" type="button">Reset Game</button>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+  <script src="/js/embedded-frame.js" defer></script>
+</body>
+</html>

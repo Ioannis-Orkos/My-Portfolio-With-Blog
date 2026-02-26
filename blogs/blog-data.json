@@ -1,0 +1,35 @@
+[
+    {
+        "folder": "blog1",
+        "title": "My First Blog Post",
+        "date": "2024-08-24",
+        "image": "blog1/1.jpg",
+        "description": "An introduction to my first blog post, discussing various interesting topics.",
+        "categories": ["Aviation"]
+    },
+    {
+        "folder": "blog2",
+        "title": "Another Blog Post",
+        "date": "2024-08-25",
+        "image": "blog2/2.jpg",
+        "description": "A brief overview of another exciting blog post filled with valuable information.",
+        "categories": ["Technology", "Coding"]
+    },
+    {
+        "folder": "blog3",
+        "title": "How I Made This Project",
+        "date": "2025-01-01",
+        "description": "A behind-the-scenes look at building a single-page app with Shadow DOM and more.",
+        "image": "blog3/1.jpg",    
+        "categories": ["Projects", "WebDev", "Tutorial"]
+    },
+    {
+        "folder": "blog4",
+        "title": "Test Blog 4 - Shadow DOM Test",
+        "date": "2026-02-25",
+        "image": "blog4/1.jpg",
+        "description": "A dummy blog post to test Shadow DOM functionality with custom JavaScript and CSS.",
+        "categories": ["Testing", "Shadow DOM", "WebDev"]
+    }
+]
+

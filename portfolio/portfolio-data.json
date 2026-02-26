@@ -1,0 +1,44 @@
+[
+    {
+        "folder": "portfolio1",
+        "title": "How I Made This Project",
+        "date": "2025-01-01",
+        "description": "A behind-the-scenes look at building a single-page app with Shadow DOM and more.",
+        "image": "portfolio1/1.jpg",
+        "locked": false,
+        "link": "https://github.com/YOUR-USERNAME/YOUR-REPO",
+        "linkLabel": "GitHub Repo",
+        "categories": ["Projects", "WebDev", "Tutorial"]
+    },
+    {
+        "folder": "portfolio2",
+        "title": "Test Portfolio 2 - Shadow DOM Test",
+        "date": "2026-02-25",
+        "image": "portfolio2/1.jpg",
+        "description": "A test portfolio item to verify Shadow DOM isolation with custom JavaScript and CSS.",
+        "locked": false,
+        "categories": ["Testing", "Shadow DOM", "Portfolio"]
+    },
+    {
+        "folder": "portfolio3",
+        "title": "Interactive Chess Game",
+        "date": "2026-02-26",
+        "image": "portfolio3/1.jpg",
+        "description": "A playable chess board built with vanilla JavaScript, including move validation, turns, captures, and move log.",
+        "locked": false,
+        "categories": ["Games", "JavaScript", "Chess"]
+    },
+    {
+        "folder": "portfolio4",
+        "title": "Hello Auth API Project",
+        "date": "2026-02-26",
+        "image": "portfolio4/1.jpg",
+        "description": "A minimal protected hello endpoint that validates origin and login token before responding.",
+        "locked": true,
+        "categories": ["Backend", "Auth", "API"],
+        "link": "http://localhost:4020/hello",
+        "linkLabel": "API Hello Endpoint",
+        "linkTarget": "_blank"
+    }
+]
+

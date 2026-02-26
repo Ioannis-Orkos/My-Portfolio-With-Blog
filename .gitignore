@@ -28,13 +28,8 @@ build/
 *.sln
 
 # Misc
+images/
 images/IO-Logo-main.png
 
 # expermiental folder
-js-expermiental/
-blogs/blog*
-prtifolio/project*
-js/script comented.js
-js/script comented copy.js
-css/reset.css
-portfolio/portfolio*
+password.txt
