@@ -28,8 +28,8 @@ build/
 *.sln
 
 # Misc
-images/
-images/IO-Logo-main.png
+# images/
+# images/IO-Logo-main.png
 
 # expermiental folder
 password.txt
