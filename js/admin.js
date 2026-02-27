@@ -1,5 +1,6 @@
 (function () {
-  const API_BASE = window.AUTH_API_BASE || "http://localhost:4001";
+  // const API_BASE = window.AUTH_API_BASE || "http://localhost:4001";
+  const API_BASE = window.AUTH_API_BASE || "https://auth.ioannis.work";
   const TOKEN_KEY = "portfolio_auth_token";
 
   const state = {
